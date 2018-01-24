@@ -8,7 +8,7 @@ import Expense from '../../models/expenses.model';
 })
 export class ExpnsesItemComponent implements OnInit {
 
-public expense: Expense;
+  expense: Expense;
   constructor() { }
 
   ngOnInit() {

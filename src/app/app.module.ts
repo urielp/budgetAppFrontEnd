@@ -7,6 +7,7 @@ import { ExpensesComponent } from './expenses/expenses.component';
 import { ExpensesListComponent } from './expenses/expnses-list/expenses-list.component';
 import { ExpnsesItemComponent } from './expenses/expnses-item/expnses-item.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import {ExpenseService} from './expenses/expenses-service';
 
 
 
@@ -23,7 +24,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpClientModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [ExpenseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
