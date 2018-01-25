@@ -1,10 +1,12 @@
 class Expense {
+  private name: string;
   private title: string;
   private amount: number;
   private description: string;
   private date: Date;
   private status: string;
-  constructor(title: string, amount: number, description: string, date: Date, status: string) {
+  constructor(name: string, title: string, amount: number, description: string, date: Date, status: string) {
+    this.name = name;
     this.title = title;
     this.amount = amount;
     this.description = description;

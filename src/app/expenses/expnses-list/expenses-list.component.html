@@ -1,5 +1,20 @@
-<ul>
-  <li *ngFor="let expense of expensesList">
-    {{expense.title}}
-  </li>
-</ul>
+<!--<ul>-->
+  <!--<li *ngFor="let expense of expensesList">-->
+    <!--{{expense.title}}-->
+  <!--</li>-->
+<!--</ul>-->
+
+<!--
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3" *ngFor="let expense of expensesList">
+      <app-expnses-item [expenseItem]="expense" ></app-expnses-item>
+    </div>
+  </div>
+</div>
+-->
+
+  <div *ngFor="let expense of expensesList">
+    <app-expnses-item></app-expnses-item>
+  </div>
+

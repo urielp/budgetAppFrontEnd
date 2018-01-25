@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import Expense from '../../models/expenses.model';
 
 @Component({
@@ -8,7 +8,7 @@ import Expense from '../../models/expenses.model';
 })
 export class ExpnsesItemComponent implements OnInit {
 
-  expense: Expense;
+  @Input()expenseItem: Expense;
   constructor() { }
 
   ngOnInit() {
