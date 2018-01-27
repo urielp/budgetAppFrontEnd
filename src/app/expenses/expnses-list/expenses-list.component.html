@@ -57,7 +57,7 @@
   <hr>
  <div class="row">
    <div class="col-sm-4" *ngFor="let expense of expensesList" >
-     <app-expnses-item></app-expnses-item>
+     <app-expnses-item [expenseItem]="expense"></app-expnses-item>
    </div>
  </div>
 </div>

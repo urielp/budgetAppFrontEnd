@@ -50,10 +50,20 @@
 -->
 
 <div class="card text-white bg-danger">
-  <div class="card-header">Header</div>
+    <div class="card-header" style="float: left">{{expenseItem.title}}
+      <span class="fa fa-credit-card fa-left">
+       </span>
+    </div>
   <div class="card-body">
-    <h4 class="card-title">Danger card title</h4>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h4 class="card-title" style="float: right">שם: {{expenseItem.name}}</h4>
+    <div>
+
+      <br>תיאור: <p class="card-text" style="float: right">{{expenseItem.description}} </p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <span class="fa fa-edit fa-left">
+      <span class="fa fa-trash pull-left "></span></span>
   </div>
 </div>
 

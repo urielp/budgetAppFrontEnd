@@ -303,4 +303,10 @@ body
 }
 .card-text:last-child {
   margin-bottom: 0;
+  word-break: break-all;
+}
+
+.fa-left{
+  float:left;
+  color: aliceblue;
 }
