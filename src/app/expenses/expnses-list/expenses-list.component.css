@@ -255,3 +255,19 @@ p
 .btn-update {
   margin-left: 15px;
 }
+
+h1{
+  float: right;
+}
+.a-heb{
+  float: left;
+}
+.row{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}

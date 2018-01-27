@@ -8,6 +8,7 @@ import { ExpensesListComponent } from './expenses/expnses-list/expenses-list.com
 import { ExpnsesItemComponent } from './expenses/expnses-item/expnses-item.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {ExpenseService} from './expenses/expenses-service';
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -17,7 +18,8 @@ import {ExpenseService} from './expenses/expenses-service';
     ExpensesComponent,
     ExpensesListComponent,
     ExpnsesItemComponent,
-    NavbarComponent
+    NavbarComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

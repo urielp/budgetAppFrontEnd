@@ -259,3 +259,13 @@ p
 .btn-update {
   margin-left: 15px;
 }
+.main-container{
+  margin-top: 56px;
+  margin-left: 235px;
+  padding: 15px;
+  -ms-overflow-x: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+  overflow: hidden;
+}
