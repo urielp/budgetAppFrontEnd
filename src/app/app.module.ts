@@ -9,7 +9,15 @@ import { ExpnsesItemComponent } from './expenses/expnses-item/expnses-item.compo
 import { NavbarComponent } from './navbar/navbar.component';
 import {ExpenseService} from './expenses/expenses-service';
 import { HeaderComponent } from './header/header.component';
+import {Routes,RouterModule} from '@angular/router';
+import { HomeCompComponent } from './home-comp/home-comp.component';
+import {AppRoutingModule} from './appRoutingModule';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
+const applicationRouting: Routes = [
+  {path: '', component: HomeCompComponent},
+  {path: 'expenses', component: ExpensesComponent}
+];
 
 
 @NgModule({
@@ -19,12 +27,15 @@ import { HeaderComponent } from './header/header.component';
     ExpensesListComponent,
     ExpnsesItemComponent,
     NavbarComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeCompComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [ExpenseService],
   bootstrap: [AppComponent]
