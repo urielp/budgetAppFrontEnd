@@ -21,6 +21,8 @@
   padding-bottom: 40px;
   transition: all .2s ease-in-out;
   color: #6f7576;
+  bottom: 0px;
+  right: 0rem;
 }
 /* highlight active menu */
 #sidebar .list-group-item:not(.collapsed) {

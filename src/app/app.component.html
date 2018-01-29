@@ -1,5 +1,7 @@
-<app-header></app-header>
-<app-sidebar></app-sidebar>
+<!--<div class="row">-->
+ <app-header></app-header>
+<!--</div>-->
+<!--<app-sidebar></app-sidebar>-->
 <!--<div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -7,6 +9,20 @@
     </div>
   </div>
 </div>-->
-<section>
+<!--<section>
   <router-outlet></router-outlet>
-</section>
+</section>-->
+<div class="container container-fluid">
+  <!--<app-home-comp></app-home-comp>-->
+<div class="row">
+  <div class="col-xs-6 col-sm-3">
+    <app-sidebar></app-sidebar>
+  </div>
+<div class="col-xs-12 col-sm-9 test-main-content">
+  <app-home-comp></app-home-comp>
+</div>
+  <hr>
+
+</div>
+</div>
+
