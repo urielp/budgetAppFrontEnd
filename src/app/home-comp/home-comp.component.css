@@ -1,4 +1,28 @@
 .mainContent{
   z-index: 1000;
   top: 56px;
+
+}
+html, body {
+  height: 100%; /*Fixes the height to 100% of the viewport*/
+}
+body {
+  padding-top: 87px; /*50px for the height of the navbar + 37px for the offset*/
+  padding-bottom: 50px; /*50px for the height of the bottom navbar*/
+}
+.navbar-offset {
+  top: 37px; /*Offsets the top navbar 37px from the top of the viewport*/
+}
+.container-fluid.scrollable {
+  overflow: auto; /*Allows the scrollable area to have a scrollbar based on the height of its content*/
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px; /* Used in this example to enable scrolling */
+}
+
+.main{
+  overflow: auto; /*Allows the scrollable area to have a scrollbar based on the height of its content*/
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px; /* Used in this example to enable scrolling */
 }

@@ -276,3 +276,12 @@ h1{
   max-width: 700px;
   margin: 0 auto;
 }
+.main {
+  margin-top: 30px; /* Add a top margin to avoid content overlay */
+}
+.container-fluid.scrollable {
+  overflow: auto; /*Allows the scrollable area to have a scrollbar based on the height of its content*/
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px; /* Used in this example to enable scrolling */
+}

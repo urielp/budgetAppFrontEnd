@@ -269,3 +269,6 @@ p
   position: relative;
   overflow: hidden;
 }
+.ui{
+  padding-top: 55px;
+}
