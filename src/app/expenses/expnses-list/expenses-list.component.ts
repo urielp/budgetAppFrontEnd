@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import Expense from '../../models/expenses.model';
 import {ExpenseService} from '../expenses-service';
-
+import {AddExpenseComponent} from './add-expense/add-expense.component';
 @Component({
   selector: 'app-expenses-list',
   templateUrl: './expenses-list.component.html',
@@ -9,7 +9,8 @@ import {ExpenseService} from '../expenses-service';
 })
 export class ExpensesListComponent implements OnInit {
 
-  expensesList: Expense[];
+  @ViewChild(AddExpenseComponent) addExpModal: AddExpenseComponent ;
+    expensesList: Expense[];
   constructor(private expenseService: ExpenseService) { }
 
   ngOnInit() {
@@ -22,6 +23,11 @@ export class ExpensesListComponent implements OnInit {
         alert(expenses.message);
       }
     });
+  }
+  Uopen() {
+    console.log('opening modal');
+    console.log(this.addExpModal);
+    this.addExpModal.open();
   }
 
 }

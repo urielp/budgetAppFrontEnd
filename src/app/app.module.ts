@@ -12,6 +12,9 @@ import {Routes,RouterModule} from '@angular/router';
 import { HomeCompComponent } from './home-comp/home-comp.component';
 import {AppRoutingModule} from './appRoutingModule';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ExpensesDashBoardComponent } from './expenses/expenses-dash-board/expenses-dash-board.component';
+import {SideNavBarComponent} from './side-nav-bar/side-nav-bar.component';
+import { AddExpenseComponent } from './expenses/expnses-list/add-expense/add-expense.component'
 
 const applicationRouting: Routes = [
   {path: '', component: HomeCompComponent},
@@ -27,7 +30,10 @@ const applicationRouting: Routes = [
     ExpnsesItemComponent,
     HeaderComponent,
     HomeCompComponent,
-    SidebarComponent
+    SidebarComponent,
+    ExpensesDashBoardComponent,
+    SideNavBarComponent,
+    AddExpenseComponent
   ],
   imports: [
     BrowserModule,

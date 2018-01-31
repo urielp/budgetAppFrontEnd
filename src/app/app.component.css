@@ -2,7 +2,6 @@
   top: 56px;
   min-width: 500px;
   max-width: 100%;
-
   margin-top: 30px;
 }
 .container-fluid.scrollable {
@@ -68,4 +67,20 @@ height: 50px;
 .socialFooter{
   padding-right: 120px;
   padding-bottom: 30px;
+}
+.main-container {
+  margin-top: 56px;
+  margin-left: 235px;
+  padding: 15px;
+  -ms-overflow-x: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 992px) {
+  .main-container {
+    margin-left: 0px !important;
+  }
 }
