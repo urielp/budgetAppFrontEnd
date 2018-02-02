@@ -15,6 +15,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ExpensesDashBoardComponent } from './expenses/expenses-dash-board/expenses-dash-board.component';
 import {SideNavBarComponent} from './side-nav-bar/side-nav-bar.component';
 import { AddExpenseComponent } from './expenses/expnses-list/add-expense/add-expense.component'
+import {FormsModule} from '@angular/forms';
+import { PaginationComponent } from './pagination/pagination.component';
+import { ExtendedDetailsModalComponent } from './expenses/expnses-item/extended-details-modal/extended-details-modal.component';
+
 
 const applicationRouting: Routes = [
   {path: '', component: HomeCompComponent},
@@ -33,11 +37,14 @@ const applicationRouting: Routes = [
     SidebarComponent,
     ExpensesDashBoardComponent,
     SideNavBarComponent,
-    AddExpenseComponent
+    AddExpenseComponent,
+    PaginationComponent,
+    ExtendedDetailsModalComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     NgbModule.forRoot(),
     AppRoutingModule
   ],

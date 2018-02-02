@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import Expense from '../../models/expenses.model';
+import {AddExpenseComponent} from '../expnses-list/add-expense/add-expense.component';
+import {ExtendedDetailsModalComponent} from './extended-details-modal/extended-details-modal.component';
 
 @Component({
   selector: 'app-expnses-item',
@@ -9,9 +11,17 @@ import Expense from '../../models/expenses.model';
 export class ExpnsesItemComponent implements OnInit {
 
   @Input()expenseItem: Expense;
+  @ViewChild(ExtendedDetailsModalComponent) extendedDetails: ExtendedDetailsModalComponent ;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  openExtendedDetailsModal(expense: Expense) {
+   console.log("Opening Modal");
+   console.log(this.extendedDetails);
+    this.extendedDetails.altOpen(expense);
   }
 
 }

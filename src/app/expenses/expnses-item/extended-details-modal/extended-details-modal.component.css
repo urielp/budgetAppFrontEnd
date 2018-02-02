@@ -1,0 +1,60 @@
+.modalDetails{
+  background-color: #dc3545;
+  border: 1px solid #040304;
+  color: #fff;
+  direction: rtl;
+  border-radius: 4px;
+}
+
+.modalDetailsHeader{
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.modalDetailsBody{
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+  direction: rtl;
+  word-wrap: break-word;
+  float: right;
+}
+.amount{
+  padding-top: 5px;
+}
+.modal-header{
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  color:#040304;
+}
+.modal-footer{
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+.modal-content{
+  background-color: #dc3545;
+}
+.modal-body{
+  margin-right: 12px;
+}
+.modalDetailsFooter{
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.my_textarea{
+  background-color: rgba(0, 0, 0, 0.03);
+  color:#040304;
+  resize: none;
+
+}
+.myHeader{
+  margin-left: 260px;
+}

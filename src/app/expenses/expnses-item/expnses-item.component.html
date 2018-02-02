@@ -48,25 +48,58 @@
     </div>
   </div>
 -->
+<!--<div class="col-sm-3 col-lg-6">-->
+<!--<div class="card text-white bg-danger">-->
+    <!--<div class="card-header" style="float: left">{{expenseItem.title}}-->
+      <!--<span class="fa fa-credit-card fa-left">-->
+       <!--</span>-->
+    <!--</div>-->
+  <!--<div class="card-body">-->
+    <!--<h4 class="card-title" style="float: right">שם: {{expenseItem.name}}</h4>-->
+    <!--<div>-->
+      <!--<br>תיאור:-->
+      <!--<p class="card-text" >{{expenseItem.description}} </p>-->
+    <!--</div>-->
+    <!--<div>-->
+      <!--<br>סכום:-->
+      <!--<p class="card-text" >{{expenseItem.amount}} </p>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="card-footer">-->
+    <!--<span class="fa fa-edit fa-left">-->
+      <!--<span class="fa fa-trash pull-left "></span></span>-->
+  <!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
 
 <div class="card text-white bg-danger">
-    <div class="card-header" style="float: left">{{expenseItem.title}}
-      <span class="fa fa-credit-card fa-left">
-       </span>
+  <div class="card-header">
+    <div class="row">
+      <div class="col col-xs-3">
+        <i class="fa fa-shekel fa-2x">{{expenseItem.amount}}</i>
+      </div>
     </div>
+  </div>
   <div class="card-body">
-    <h4 class="card-title" style="float: right">שם: {{expenseItem.name}}</h4>
-    <div>
-
-      <br>תיאור: <p class="card-text" style="float: right">{{expenseItem.description}} </p>
+    <div class="col col-xs-9 text-right">
+      <div class="row">
+        <label for="name">שם:</label>
+        <div id="name">{{expenseItem.name}}</div>
+      </div>
+      <div class="row">
+        <label for="date">תאריך:</label>
+        <div id="date">{{expenseItem.date}}</div>
+      </div>
     </div>
   </div>
   <div class="card-footer">
-    <span class="fa fa-edit fa-left">
-      <span class="fa fa-trash pull-left "></span></span>
+    <span class="float-left">פרטים</span>
+    <a href="javascript:void(0)" (click)="openExtendedDetailsModal(expenseItem)" class="float-left card-inverse">
+      <span ><i class="fa fa-arrow-circle-left"></i></span>
+    </a>
+    <app-extended-details-modal ></app-extended-details-modal>
   </div>
+
 </div>
-
-
-
-

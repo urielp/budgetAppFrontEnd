@@ -16,6 +16,30 @@ export class ExpenseService {
     return this.httpClient.get(this.expense_url)
       .map((res) => {
         if (res['data'].docs) {
+          console.log('****');
+          console.log(res);
+          const returnedData = res['data'].docs as Expense[];
+          return {
+            success: true,
+            data: returnedData,
+            total: res['data'].total,
+            pages: res['data'].pages,
+            limit: res['data'].limit,
+            message: 'Great!'
+          };
+        }
+        else {
+          return res;
+        }
+      });
+  }
+
+  getExpenseListByPage(p): Observable<any> {
+    return this.httpClient.get(this.expense_url, { params: { page: p}})
+      .map((res) => {
+        if (res['data'].docs) {
+          console.log('****');
+          console.log(res);
           const returnedData = res['data'].docs as Expense[];
           return {
             success: true,
@@ -27,5 +51,10 @@ export class ExpenseService {
           return res;
         }
       });
+  }
+  addExpense(expense: Expense): Observable<any> {
+    console.log("about to add expense");
+    console.log(this.expense_url);
+    return this.httpClient.post(`${this.expense_url}`, expense);
   }
 }

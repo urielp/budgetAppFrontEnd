@@ -1,22 +1,53 @@
-<div class="container-fluid scrollable">
+<div class="container">
   <div class="row">
     <hr>
   </div>
   <div class="row">
   <div class="page-header">
     <h1 >רשימת הוצאות</h1>
+    <h4> סך הכל יש :  {{total}} הוצאות</h4>
+   <app-pagination [paginationSize]="limit" [total]="total" (requierdPage)="getPage($event)"></app-pagination>
   </div>
-
   </div>
   <hr>
- <div class="row" >
-   <div class="col-sm-4" *ngFor="let expense of expensesList" >
-     <app-expnses-item [expenseItem]="expense"></app-expnses-item>
-   </div>
-   <div class=" col-sm-4 align-self-end">
+<!--<div class="row" >
+    <div class="col-xs-3 col-lg-4" *ngFor="let expense of expensesList" >
+       <app-expnses-item [expenseItem]="expense"></app-expnses-item>
+    </div>
+
+ </div>-->
+<!--<div class="container">
+  <div class="row">
+    <div class="card-deck" *ngFor="let expense of expensesList">
+      <app-expnses-item [expenseItem]="expense"></app-expnses-item>
+&lt;!&ndash;      <div class="card">
+        <div class="card-block">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">This is a wider
+            card with supporting text below as a natural lead-in to additional content.
+            This content is a little bit longer.This is a wider
+            card with supporting text below as a natural lead-in to additional content.
+            This content is a little bit longer.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>&ndash;&gt;
+    </div>
+  </div>
+  </div>-->
+  <div class="card-deck" >
+    <div *ngFor="let expense of expensesList">
+      <app-expnses-item [expenseItem]="expense"></app-expnses-item>
+    </div>
+<!--    <div class="col-sm-6 col-xs-6 col-xl-6 col-md-6 col-lg-6" *ngFor="let expense of expensesList">
+    <app-expnses-item [expenseItem]="expense"></app-expnses-item>
+    </div>-->
+  </div>
+
+  <div class="row add">
+   <div class="col-xs-1 offset-xs-1 align-self-sm-end">
      <i class="fa fa-plus-square-o fa-4x" aria-hidden="true" (click)="Uopen()"></i>
    </div>
- </div>
-  <app-add-expense></app-add-expense>
+   <app-add-expense (onFormSubmitted)="onDataSubmit($event)"></app-add-expense>
+  </div>
 </div>
 
