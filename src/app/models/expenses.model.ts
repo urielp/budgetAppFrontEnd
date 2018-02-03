@@ -14,5 +14,20 @@ class Expense {
     this.status = status;
 
   }
+  public dateFormat(): string {
+
+    let dd = this.date.getDate();
+    let mm = this.date.getMonth() + 1;
+    const yyyy = this.date.getFullYear();
+
+    if (dd < 10) {
+      dd = +`0${dd}`;
+    }
+    if (mm < 10) {
+      mm = +`0${mm}`;
+    }
+
+    return dd + '/' + mm + '/' + yyyy;
+  }
 }
 export default Expense;
