@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ExpenseService} from '../expenses-service';
 import Expense from '../../models/expenses.model';
-import {cpus} from 'os';
+
 
 @Component({
   selector: 'app-epense-graph',
