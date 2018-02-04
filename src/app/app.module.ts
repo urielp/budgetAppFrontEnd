@@ -18,7 +18,8 @@ import { AddExpenseComponent } from './expenses/expnses-list/add-expense/add-exp
 import {FormsModule} from '@angular/forms';
 import { PaginationComponent } from './pagination/pagination.component';
 import { ExtendedDetailsModalComponent } from './expenses/expnses-item/extended-details-modal/extended-details-modal.component';
-
+import { EpenseGraphComponent } from './expenses/epense-graph/epense-graph.component';
+import { ChartsModule } from 'ng2-charts';
 
 const applicationRouting: Routes = [
   {path: '', component: HomeCompComponent},
@@ -39,14 +40,16 @@ const applicationRouting: Routes = [
     SideNavBarComponent,
     AddExpenseComponent,
     PaginationComponent,
-    ExtendedDetailsModalComponent
+    ExtendedDetailsModalComponent,
+    EpenseGraphComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     NgbModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule
   ],
   providers: [ExpenseService],
   bootstrap: [AppComponent]

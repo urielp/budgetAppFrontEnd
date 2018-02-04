@@ -289,9 +289,20 @@ h1{
 .add{
 
   float: left;
+  margin-left: 290px;
 }
 .card-wrap{
   flex: 0 0 33.333%;
   display: flex;
   padding: 10px; /* gutter width */
+}
+
+.uriel{
+  margin-right: 450px;
+  width: 80%;
+  padding: 25px;
+}
+
+.pagcenter{
+  margin-right:320px;
 }

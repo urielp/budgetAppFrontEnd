@@ -1,0 +1,31 @@
+<div class="uriel">
+<div class="row">
+  <div class="page-header">
+    <h1 >גרף הוצאות</h1>
+  </div>
+</div>
+<hr>
+
+<div>
+  <div class="row">
+    <div class="col col-sm-12 ">
+      <div class="card mb-3 w-100">
+        <div class="card-header">
+          My Expense Chart
+        </div>
+        <div class="card-body">
+          <canvas baseChart width="400" height="150"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

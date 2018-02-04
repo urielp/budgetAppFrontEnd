@@ -27,13 +27,11 @@ export class ExpenseService {
             limit: res['data'].limit,
             message: 'Great!'
           };
-        }
-        else {
+        } else {
           return res;
         }
       });
   }
-
   getExpenseListByPage(p): Observable<any> {
     return this.httpClient.get(this.expense_url, { params: { page: p}})
       .map((res) => {
@@ -46,14 +44,13 @@ export class ExpenseService {
             data: returnedData,
             message: 'Great!'
           };
-        }
-        else {
+        } else {
           return res;
         }
       });
   }
   addExpense(expense: Expense): Observable<any> {
-    console.log("about to add expense");
+    console.log('about to add expense');
     console.log(this.expense_url);
     return this.httpClient.post(`${this.expense_url}`, expense);
   }
