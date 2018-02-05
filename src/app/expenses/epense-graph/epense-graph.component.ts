@@ -56,6 +56,18 @@ private getExpensesData() {
     }
   });
 }
+
+getExpensesDataByMonth(month) {
+    if (month) {
+  const results = this.expenseService.getExpensesByMonth(month).subscribe((expensesByMonth) => {
+    if (expensesByMonth.sucess) {
+      console.log(expensesByMonth.data);
+    }
+    console.log(expensesByMonth);
+  });
+    }
+  else {alert('need to provide a valid moth'); }
+}
 public myTest(d: any){
 
   }

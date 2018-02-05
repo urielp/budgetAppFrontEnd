@@ -33,11 +33,10 @@ export class ExpenseService {
       });
   }
   getExpenseListByPage(p): Observable<any> {
-    return this.httpClient.get(this.expense_url, { params: { page: p}})
+    return this.httpClient.get(`${this.expense_url}`, { params: { page: p}})
       .map((res) => {
         if (res['data'].docs) {
-          console.log('****');
-          console.log(res);
+
           const returnedData = res['data'].docs as Expense[];
           return {
             success: true,
@@ -53,5 +52,21 @@ export class ExpenseService {
     console.log('about to add expense');
     console.log(this.expense_url);
     return this.httpClient.post(`${this.expense_url}`, expense);
+  }
+
+  getExpensesByMonth(month): Observable<any> {
+    return this.httpClient.get(`${this.expense_url}/month/${month}`, { params : { month : '2' }} )
+      .map((res) => {
+        console.log(`${this.expense_url}/month/${month}`);
+        if (res['data']) {
+          console.log('*****');
+          console.log(res);
+          return {
+            success:true,
+            data: res['data'],
+            message: 'Expenses by ' + month + 'returned successfully'
+          };
+        } else {return res; }
+      });
   }
 }
