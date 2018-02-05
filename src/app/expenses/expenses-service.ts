@@ -57,16 +57,17 @@ export class ExpenseService {
   getExpensesByMonth(month): Observable<any> {
     return this.httpClient.get(`${this.expense_url}/month/${month}`, { params : { month : '2' }} )
       .map((res) => {
-        console.log(`${this.expense_url}/month/${month}`);
         if (res['data']) {
-          console.log('*****');
-          console.log(res);
           return {
-            success:true,
+            success: true,
             data: res['data'],
             message: 'Expenses by ' + month + 'returned successfully'
           };
-        } else {return res; }
+        } else {return {
+          success: false,
+          data: {},
+          message: 'Expenses by ' + month + 'was not returned'
+        }}
       });
   }
 }

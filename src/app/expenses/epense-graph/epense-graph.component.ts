@@ -19,7 +19,7 @@ export class EpenseGraphComponent implements OnInit {
   public lineChartData : Array<any> = [
     {data: this.mylist, label: 'הוצאות'}
   ];
-  public lineChartLabels : Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels : Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July','dd','uu','ll'];
   public lineChartOptions : any = {
     responsive: true
   };
@@ -46,8 +46,10 @@ export class EpenseGraphComponent implements OnInit {
 private getExpensesData() {
   this.expenseService.getExpensesList().subscribe((expenses) => {
     if (expenses.success) {
+      this.lineChartLabels = Array<any> (expenses.data.length) ;
       for (let i = 0; i < expenses.data.length; i++) {
         this.mylist.push( expenses.data[i].amount);
+       // this.lineChartLabels.push(expenses.data[i].date);
       }
       console.log(this.mylist);
       //this.lineChartData.push({data:this.mylist,label:'Test'});
@@ -58,12 +60,15 @@ private getExpensesData() {
 }
 
 getExpensesDataByMonth(month) {
-    if (month) {
-  const results = this.expenseService.getExpensesByMonth(month).subscribe((expensesByMonth) => {
-    if (expensesByMonth.sucess) {
-      console.log(expensesByMonth.data);
+    let month2 = new Date().getMonth() + 1;
+    if (month2) {
+      const results = this.expenseService.getExpensesByMonth(month2).subscribe((expensesByMonth) => {
+    if (expensesByMonth.success) {
+      console.log(expensesByMonth);
     }
-    console.log(expensesByMonth);
+    else{
+      console.log('something went wrong');
+    }
   });
     }
   else {alert('need to provide a valid moth'); }
