@@ -1,7 +1,7 @@
 <div class="uriel">
 <div class="row">
   <div class="page-header">
-    <h1 >גרף הוצאות</h1>
+    <h1 > גרף הוצאות חודשי</h1>
   </div>
 </div>
 <hr>
@@ -11,7 +11,7 @@
     <div class="col col-sm-12 ">
       <div class="card mb-3 w-100">
         <div class="card-header">
-          My Expense Chart
+          ההוצאות לחודש {{currentMonth}}
         </div>
         <div class="card-body">
           <canvas baseChart width="400" height="150"
@@ -28,7 +28,13 @@
     </div>
   </div>
 </div>
-  <div>
-    <button class="btn btn-primary" (click)="getExpensesDataByMonth()">Click Me</button>
+  <div class="row">
+    <div class="col col-xm-3 align-self-start">
+      <button class="btn btn-primary" (click)="prevMonth()" [disabled]="!prevAvilable" >חודש קודם</button>
+    </div>
+    <div class="col align-self-end">
+      <button class="btn btn-primary next" (click)="nextMonth()" [disabled]="!nextAvilable">חודש הבא</button>
+    </div>
   </div>
+
 </div>

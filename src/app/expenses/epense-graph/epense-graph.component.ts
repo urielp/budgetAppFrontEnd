@@ -10,15 +10,16 @@ import Expense from '../../models/expenses.model';
 })
 export class EpenseGraphComponent implements OnInit {
 
+  monthes = ['ינואר', 'פברואר' , 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר'  , 'נובמבר', 'דצמבר' ];
   mylist: Array<any> = [];
-  constructor(private expenseService: ExpenseService) { }
-
-  ngOnInit() {
-    this.getExpensesData();
-  }
+  currentMonth;
+  currentMonthIndex;
+  nextAvilable = true;
+  prevAvilable = true;
   public lineChartData : Array<any> = [
     {data: this.mylist, label: 'הוצאות'}
   ];
+
   public lineChartLabels : Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July','dd','uu','ll'];
   public lineChartOptions : any = {
     responsive: true
@@ -35,15 +36,36 @@ export class EpenseGraphComponent implements OnInit {
   ];
   public lineChartLegend: boolean = true;
   public lineChartType: string = 'line';
+
+  constructor(private expenseService: ExpenseService) { }
+
+  ngOnInit() {
+    //this.getExpensesData();
+    this.currentMonth = this.getHebMonth(new Date().getMonth());
+    this.currentMonthIndex = this.monthes.indexOf(this.currentMonth);
+    this.getExpensesDataByMonth(this.monthes.indexOf(this.currentMonth) +1)
+    if (this.monthes.indexOf(this.currentMonth) === 0 ) {
+      this.prevAvilable = false;
+    }
+    else if (this.monthes.indexOf(this.currentMonth) === 11) {
+      this.nextAvilable = false;
+    }
+    console.log(this.monthes.indexOf(this.currentMonth));
+  }
+
+  getHebMonth(month) {
+    return this.monthes[month];
+  }
+
   // events
   public chartClicked(e: any): void {
     console.log(e);
   }
-
   public chartHovered(e: any): void {
     console.log(e);
   }
-private getExpensesData() {
+
+  private getExpensesData() {
   this.expenseService.getExpensesList().subscribe((expenses) => {
     if (expenses.success) {
       this.lineChartLabels = Array<any> (expenses.data.length) ;
@@ -51,20 +73,21 @@ private getExpensesData() {
         this.mylist.push( expenses.data[i].amount);
        // this.lineChartLabels.push(expenses.data[i].date);
       }
-      console.log(this.mylist);
       //this.lineChartData.push({data:this.mylist,label:'Test'});
     } else {
       alert(expenses.message);
     }
   });
 }
-
-getExpensesDataByMonth(month) {
-    let month2 = new Date().getMonth() + 1;
-    if (month2) {
-      const results = this.expenseService.getExpensesByMonth(month2).subscribe((expensesByMonth) => {
+  getExpensesDataByMonth(month) {
+   // let month2 = new Date().getMonth() + 1;
+    console.log(month);
+    if (month) {
+      const results = this.expenseService.getExpensesByMonth(month).subscribe((expensesByMonth) => {
     if (expensesByMonth.success) {
-      console.log(expensesByMonth);
+        console.log('printing results');
+        console.log(expensesByMonth);
+        this.populateGraphData(expensesByMonth.data);
     }
     else{
       console.log('something went wrong');
@@ -73,8 +96,46 @@ getExpensesDataByMonth(month) {
     }
   else {alert('need to provide a valid moth'); }
 }
-public myTest(d: any){
+  public myTest(d: any){
 
   }
 
+  //getting the graph oe expenses for the previous month
+  prevMonth() {
+
+    this.nextAvilable = true;
+    this.currentMonth = this.monthes[this.monthes.indexOf(this.currentMonth) -1];
+    console.log(this.monthes.indexOf(this.currentMonth));
+    this.getExpensesDataByMonth(this.monthes.indexOf(this.currentMonth) + 1 );
+    //console.log(this.currentMonth );
+    if (this.monthes.indexOf(this.currentMonth) === 0 ) {
+      this.prevAvilable = false;
+    }
+  }
+
+  //getting graph for the next month
+  //TODO:should considere make this avilable only if we already viewing the previous month.
+  nextMonth() {
+    this.prevAvilable = true;
+    this.currentMonth = this.monthes[this.monthes.indexOf(this.currentMonth) +1];
+    this.getExpensesDataByMonth(this.monthes.indexOf(this.currentMonth) + 1 );
+    console.log(this.monthes.indexOf(this.currentMonth));
+    //console.log(this.currentMonth );
+    if (this.monthes.indexOf(this.currentMonth) === 11 ) {
+      this.nextAvilable = false;
+    }
+  }
+
+  //populating the data for the graph
+
+  populateGraphData(expenses: Array<any>) {
+    const graphData = [];
+    let _lineChartData : Array<any> = new Array(1);
+    _lineChartData[0] = {data : new Array(expenses.length), label: this.currentMonth};
+    for (let i = 0 ; i < expenses.length ; i++) {
+      graphData.push(expenses[i].doc.amount);
+      _lineChartData[0].data[i] = expenses[i].doc.amount;
+    }
+    this.lineChartData = _lineChartData;
+  }
 }
