@@ -55,7 +55,7 @@ export class ExpenseService {
   }
 
   getExpensesByMonth(month): Observable<any> {
-    return this.httpClient.get(`${this.expense_url}/month/${month}`, { params : { month : '2' }} )
+    return this.httpClient.get(`${this.expense_url}/month/${month}` )
       .map((res) => {
         if (res['data']) {
           return {
