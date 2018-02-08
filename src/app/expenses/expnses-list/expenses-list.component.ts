@@ -13,22 +13,20 @@ export class ExpensesListComponent implements OnInit {
   @ViewChild(AddExpenseComponent) addExpModal: AddExpenseComponent ;
   expensesList: Expense[];
   expense: Expense;
-  pages: number;
-  total: number;
-  limit:number;
+  pages: any;
+  total: any;
+  limit: any;
 
   constructor(private expenseService: ExpenseService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.expenseService.getExpensesList().subscribe((expenses) => {
-      console.log(expenses);
       if (expenses.success) {
-        this.expensesList = expenses.data;
-        this.total = expenses.total;
-        this.pages = expenses.pages;
-        this.limit = expenses.libraries;
-        console.log('pages: ' + this.pages);
-        console.log('total: ' + this.total);
+        this.expensesList = expenses.data as Expense[];
+        this.total = +expenses.total;
+        this.pages = +expenses.pages;
+        this.limit = +expenses.limit;
+        console.log(this.total + ' ' + this.pages + ' ' + this.limit);
       } else {
         alert(expenses.message);
       }
@@ -36,8 +34,6 @@ export class ExpensesListComponent implements OnInit {
   }
   // open modal to create new expense
   Uopen() {
-    console.log('opening modal');
-    console.log(this.addExpModal);
     this.addExpModal.open();
   }
 
@@ -46,9 +42,9 @@ export class ExpensesListComponent implements OnInit {
     this.router.navigate(['add'], {relativeTo: this.activeRoute});
   }
 
-//adding expense to DB
+// adding expense to DB
   onDataSubmit(expense: any) {
-    console.log(expense);
+
     this.expenseService.addExpense(expense).subscribe((res) => {
       if (res.success === true)
       {
@@ -59,11 +55,9 @@ export class ExpensesListComponent implements OnInit {
     });
   }
 
-  //get sepcific page from DB
+  // get sepcific page from DB
   getPage(page:number) {
-    console.log('fired ' + page);
     this.expenseService.getExpenseListByPage(page).subscribe((expenses) => {
-      console.log(expenses);
       if (expenses.success) {
         this.expensesList = expenses.data;
       } else {
@@ -80,3 +74,4 @@ export class ExpensesListComponent implements OnInit {
 
   }
 }
+

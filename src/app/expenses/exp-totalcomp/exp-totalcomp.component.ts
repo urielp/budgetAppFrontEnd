@@ -19,9 +19,6 @@ totalAmount:number;
   getTotalExpensesAmount() {
     this.expensesService.getTotalExpensesAmount().subscribe((results) => {
       if (results.success) {
-        console.log('printing results');
-        console.log(results);
-        console.log(Monthes[new Date().getMonth()]);
         for (let i = 0 ; i < results.data.length ; i++) {
           if ((results.data[i]._id.month - 1) === new Date().getMonth()) {
             console.log(results.data[i].totalAmount);

@@ -19,8 +19,7 @@ export class ExpnsesItemComponent implements OnInit {
   }
 
   openExtendedDetailsModal(expense: Expense) {
-   console.log("Opening Modal");
-   console.log(this.extendedDetails);
+
     this.extendedDetails.altOpen(expense);
   }
 
