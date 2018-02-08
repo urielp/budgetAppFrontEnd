@@ -100,7 +100,7 @@ export class EpenseGraphComponent implements OnInit {
 
   }
 
-  //getting the graph oe expenses for the previous month
+  // getting the graph oe expenses for the previous month
   prevMonth() {
 
     this.nextAvilable = true;
@@ -113,8 +113,8 @@ export class EpenseGraphComponent implements OnInit {
     }
   }
 
-  //getting graph for the next month
-  //TODO:should considere make this avilable only if we already viewing the previous month.
+  // getting graph for the next month
+  // TODO:should considere make this avilable only if we already viewing the previous month.
   nextMonth() {
     this.prevAvilable = true;
     this.currentMonth = this.monthes[this.monthes.indexOf(this.currentMonth) +1];
@@ -126,7 +126,7 @@ export class EpenseGraphComponent implements OnInit {
     }
   }
 
-  //populating the data for the graph
+  // populating the data for the graph
 
   populateGraphData(expenses: Array<any>) {
     const graphData = [];
