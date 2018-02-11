@@ -77,8 +77,11 @@
 <div class="card text-white bg-danger">
   <div class="card-header">
     <div class="row">
-      <div class="col col-xs-3">
+      <div class="col ">
         <i class="fa fa-shekel fa-2x">{{expenseItem.amount}}</i>
+      </div>
+      <div>
+        <a><span><i class="fa fa-credit-card fa-right"></i></span></a>
       </div>
     </div>
   </div>
@@ -90,16 +93,34 @@
       </div>
       <div class="row">
         <label for="date">תאריך:</label>
-        <div id="date">{{expenseItem.date}}</div>
+        <div id="date">{{formatDate()}}</div>
       </div>
     </div>
   </div>
   <div class="card-footer">
-    <span class="float-left">פרטים</span>
-    <a href="javascript:void(0)" (click)="openExtendedDetailsModal(expenseItem)" class="float-left card-inverse">
-      <span ><i class="fa fa-arrow-circle-left"></i></span>
-    </a>
-    <app-extended-details-modal ></app-extended-details-modal>
+    <div class="row">
+      <div class="col col-md-12">
+        <span class="float-right">פרטים</span>
+        <a href="javascript:void(0)" (click)="openExtendedDetailsModal(expenseItem)" class="float-left card-inverse">
+          <span><i class="fa fa-arrow-circle-left"></i></span>
+        </a>
+        <app-extended-details-modal ></app-extended-details-modal>
+      </div>
+    </div>
+    <!--<div class="row">-->
+      <!--<div class="col col-md-4">-->
+        <!--<a>-->
+          <!--<i class="fa fa-edit"></i>-->
+        <!--</a>-->
+      <!--</div>-->
+      <!--<div class="col col-md-4">-->
+      <!--</div>-->
+      <!--<div class="col col-md-4">-->
+        <!--<a>-->
+          <!--<i class="fa fa-trash "></i>-->
+        <!--</a>-->
+      <!--</div>-->
+    <!--</div>-->
   </div>
 
 </div>

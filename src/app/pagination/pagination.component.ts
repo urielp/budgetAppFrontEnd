@@ -19,8 +19,6 @@ export class PaginationComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log('Total: ' + this.total);
-    console.log('pagination Size: ' + this.paginationSize);
   }
   loadPage(page: number) {
      this.requierdPage.emit(page);

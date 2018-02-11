@@ -56,9 +56,21 @@
               <textarea class="form-control my_textarea" rows="3" cols="50" readonly>{{expenseItem.description}}</textarea>
             </fieldset>
           </div>
+          <div class="row">
+            <div class="col">
+              <a><i class="fa fa-edit float-left" style="padding-top: 0.05rem" ></i></a>
+              <a><i class="fa fa-trash float-left" style="padding-left: 12px"></i></a>
+            </div>
+
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="d('Cross click')">סגור</button>
+          <div class="row">
+            <div class="col col-md-6">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="d('Cross click')">סגור</button>
+            </div>
+          </div>
+
         </div>
       </div>
 

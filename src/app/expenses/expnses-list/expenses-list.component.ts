@@ -16,21 +16,37 @@ export class ExpensesListComponent implements OnInit {
   pages: any;
   total: any;
   limit: any;
+  filtterdArray : Expense[];
 
   constructor(private expenseService: ExpenseService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.expenseService.getExpensesList().subscribe((expenses) => {
       if (expenses.success) {
-        this.expensesList = expenses.data as Expense[];
+
+        this.expensesList = expenses.data  as Expense[];
         this.total = +expenses.total;
         this.pages = +expenses.pages;
         this.limit = +expenses.limit;
-        console.log(this.total + ' ' + this.pages + ' ' + this.limit);
+        this.filterExpensesByMonth();
       } else {
         alert(expenses.message);
       }
     });
+  }
+
+
+  filterExpensesByMonth() {
+    this.filtterdArray = this.expensesList.filter(this.filterByMonth);
+    //this.expensesList = testArray;
+    console.log( this.filtterdArray);
+  }
+
+  filterByMonth(item) {
+    let d = new Date(item.date);
+      if (d.getMonth() === new Date().getMonth() + 1) {
+        return true;
+      }
   }
   // open modal to create new expense
   Uopen() {

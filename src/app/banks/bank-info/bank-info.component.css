@@ -1,0 +1,58 @@
+.uriel{
+  margin-right: 750px;
+
+}
+
+.cardOnly{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid #040304;
+  background-color: #23b87a
+}
+
+.test{
+  background-color: #27E29B
+}
+.textCenter{
+  margin-right:65px;
+}
+.testingColor{
+  background-color: #95A7B5;
+}
+.discountIcon {
+  width: 60px;
+  height: 60px;
+  background-color: #23b87a;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid #040304;
+  border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+}
+
+.discountCardHeader{
+  background-color: #21ae70;
+}
+
+.discountCardBody{
+  background-color: #26c181
+}
+.discountCardFooter{
+  background-color: #23b87a;
+}
+
+.hpoalimIcon{
+  width: 60px;
+  height: 60px;
+
+/*  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid #040304;
+  border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;*/
+}
+
+.hapoalimCardHeader{
+  background-color: #95A7B5;
+}
+.hapoalimCardBody{
+  background-color: #a6b8c6;
+}
+.hapoalimCardFooter {
+  background-color: #95A7B5;
+}

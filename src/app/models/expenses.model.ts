@@ -3,8 +3,11 @@ class Expense {
   private title: string;
   private amount: number;
   private description: string;
-  private date: Date;
+  public date: Date;
   private status: string;
+  public formatetdDate: string;
+  private _id : string;
+  private __v:number;
   constructor(name: string, title: string, amount: number, description: string, date: Date, status: string) {
     this.name = name;
     this.title = title;
@@ -12,7 +15,11 @@ class Expense {
     this.description = description;
     this.date = new Date(0);
     this.status = status;
+    this.formatetdDate = this.dateFormat();
+  }
 
+  public getDate(): Date {
+    return this.date;
   }
   public dateFormat(): string {
 
@@ -26,7 +33,7 @@ class Expense {
     if (mm < 10) {
       mm = +`0${mm}`;
     }
-
+    console.log(dd + '/' + mm + '/' + yyyy);
     return dd + '/' + mm + '/' + yyyy;
   }
 }

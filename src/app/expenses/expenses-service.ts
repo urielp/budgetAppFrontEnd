@@ -16,6 +16,18 @@ export class ExpenseService {
       .map((res) => {
         if (res['data'].docs) {
 
+          // const returnedData = Array<any>();
+          // for (let i = 0 ; i < res['data'].docs.length ; i++) {
+          //   returnedData.push(new Expense(
+          //     res['data'].docs[i].name,
+          //     res['data'].docs[i].title,
+          //     res['data'].docs[i].amount,
+          //     res['data'].docs[i].description,
+          //     res['data'].docs[i].date,
+          //     res['data'].docs[i].status));
+          //   console.log(res['data'].docs[i].date);
+          // }
+
           const returnedData = res['data'].docs as Expense[];
           return {
             success: true,
@@ -56,12 +68,12 @@ export class ExpenseService {
           return {
             success: true,
             data: res['data'],
-            message: 'Expenses by ' + month + 'returned successfully'
+            message: 'Expenses by ' + month + ' returned successfully'
           };
         } else {return {
           success: false,
           data: {},
-          message: 'Expenses by ' + month + 'was not returned'
+          message: 'Expenses by ' + month + ' was not returned'
         }}
       });
   }
