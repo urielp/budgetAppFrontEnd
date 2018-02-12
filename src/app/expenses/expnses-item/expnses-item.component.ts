@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ViewChild} from '@angular/core';
+import {Component, OnInit, Input, ViewChild, AfterContentInit} from '@angular/core';
 import Expense from '../../models/expenses.model';
 import {AddExpenseComponent} from '../expnses-list/add-expense/add-expense.component';
 import {ExtendedDetailsModalComponent} from './extended-details-modal/extended-details-modal.component';
@@ -8,9 +8,10 @@ import {ExtendedDetailsModalComponent} from './extended-details-modal/extended-d
   templateUrl: './expnses-item.component.html',
   styleUrls: ['./expnses-item.component.css']
 })
-export class ExpnsesItemComponent implements OnInit {
+export class ExpnsesItemComponent implements OnInit,AfterContentInit {
 
   @Input()expenseItem: Expense;
+  @Input() testItem : any;
   @ViewChild(ExtendedDetailsModalComponent) extendedDetails: ExtendedDetailsModalComponent ;
   date:Date;
   myTest : Date;
@@ -22,18 +23,22 @@ export class ExpnsesItemComponent implements OnInit {
       //console.log(this.formatDate());
     }
     this.myTest = new Date('2018-02-28T22:00:00.000Z');
-    console.log(this.myTest);
+
   }
 
+  ngAfterContentInit() {
+   console.log('**');
+   console.log(this.testItem);
+  }
 
   openExtendedDetailsModal(expense: Expense) {
 
     this.extendedDetails.altOpen(expense);
   }
 formatDate() {
-  let dd = this.date.getDay();
-  let mm = this.date.getMonth() ;
-  const yyyy = this.date.getFullYear();
+  let dd = this.testItem.day;//this.date.getDay();
+  let mm =this.testItem.month;//this.date.getMonth() ;
+  const yyyy = this.testItem.year;//this.date.getFullYear();
    if (dd < 10) {
      dd =  +`0${dd}`;
    }

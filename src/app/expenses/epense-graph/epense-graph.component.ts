@@ -127,7 +127,6 @@ export class EpenseGraphComponent implements OnInit {
   }
 
   // populating the data for the graph
-
   populateGraphData(expenses: Array<any>) {
     const graphData = [];
     let _lineChartData : Array<any> = new Array(1);

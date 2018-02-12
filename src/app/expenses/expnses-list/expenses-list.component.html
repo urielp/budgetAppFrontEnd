@@ -7,14 +7,14 @@
   </div>
   </div>
   <div class="row">
-    <div class="col-md-4 pagcenter">
+    <div class="col-md-4 pagcenter" *ngIf="showPaginition">
         <app-pagination [paginationSize]="pages" [total]="total" (requierdPage)="getPage($event)"></app-pagination>
     </div>
   </div>
   <hr>
   <div class="card-deck " >
     <div class="w-25" *ngFor="let expense of filtterdArray">
-      <app-expnses-item [expenseItem]="expense"></app-expnses-item>
+      <app-expnses-item [expenseItem]="expense" [testItem]="expense"></app-expnses-item>
     </div>
   </div>
   <div class="row add">

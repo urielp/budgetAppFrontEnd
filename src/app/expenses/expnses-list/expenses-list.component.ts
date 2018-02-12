@@ -17,10 +17,14 @@ export class ExpensesListComponent implements OnInit {
   total: any;
   limit: any;
   filtterdArray : Expense[];
-
+  showPaginition : boolean;
   constructor(private expenseService: ExpenseService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.filterExpensesByMonth();
+  }
+
+  getFullExpensesLit() {
     this.expenseService.getExpensesList().subscribe((expenses) => {
       if (expenses.success) {
 
@@ -35,14 +39,23 @@ export class ExpensesListComponent implements OnInit {
     });
   }
 
-
   filterExpensesByMonth() {
-    this.filtterdArray = this.expensesList.filter(this.filterByMonth);
+
+    //this.filtterdArray = this.expensesList.filter(this.filterByMonth);
     //this.expensesList = testArray;
-    console.log( this.filtterdArray);
+
+    this.showPaginition = false;
+    this.expenseService.getExpensesByMonth(new Date().getMonth() + 1).subscribe((results) => {
+      if (results.success) {
+        console.log(results);
+        this.filtterdArray = results.data;
+        this.total = results.data.length;
+      }
+    } );
   }
 
   filterByMonth(item) {
+    console.log(item);
     let d = new Date(item.date);
       if (d.getMonth() === new Date().getMonth() + 1) {
         return true;
