@@ -4,12 +4,17 @@ import {Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import Expense from '../models/expenses.model';
+import {Subject} from 'rxjs/Subject';
 
 
 @Injectable()
 export class ExpenseService {
   api_url = 'http://localhost:3000';
   expense_url = `${this.api_url}/expenses`;
+  private monthChangedSource = new Subject<number>();
+
+  monthWasChanged$ = this.monthChangedSource.asObservable();
+
   constructor(private httpClient: HttpClient) {}
   getExpensesList(): Observable<any> {
     return this.httpClient.get(this.expense_url)
@@ -95,6 +100,10 @@ export class ExpenseService {
           };
         }
       });
+}
+
+  monthChanged(month: number) {
+  this.monthChangedSource.next(month);
 }
 
 }

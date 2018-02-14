@@ -3,6 +3,7 @@ import Expense from '../../models/expenses.model';
 import {ExpenseService} from '../expenses-service';
 import {AddExpenseComponent} from './add-expense/add-expense.component';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Monthes} from '../shared/monthes';
 @Component({
   selector: 'app-expenses-list',
   templateUrl: './expenses-list.component.html',
@@ -18,10 +19,12 @@ export class ExpensesListComponent implements OnInit {
   limit: any;
   filtterdArray: Expense[];
   showPaginition: boolean;
+  currentHebMonth:string;
   constructor(private expenseService: ExpenseService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.filterExpensesByMonth();
+    this.currentHebMonth = Monthes[+(new Date().getMonth())];
   }
 
   getFullExpensesLit() {

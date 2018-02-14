@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ExpenseService} from '../expenses-service';
 import Expense from '../../models/expenses.model';
 
@@ -9,22 +9,20 @@ import Expense from '../../models/expenses.model';
   styleUrls: ['./epense-graph.component.css']
 })
 export class EpenseGraphComponent implements OnInit {
-
   monthes = ['ינואר', 'פברואר' , 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר'  , 'נובמבר', 'דצמבר' ];
   mylist: Array<any> = [];
   currentMonth;
   currentMonthIndex;
   nextAvilable = true;
   prevAvilable = true;
-  public lineChartData : Array<any> = [
+  public lineChartData: Array<any> = [
     {data: this.mylist, label: 'הוצאות'}
   ];
-
-  public lineChartLabels : Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July','dd','uu','ll'];
-  public lineChartOptions : any = {
+  public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July','dd','uu','ll'];
+  public lineChartOptions: any = {
     responsive: true
   };
-  public lineChartColors : Array<any> = [
+  public lineChartColors: Array<any> = [
     { // grey
       backgroundColor: 'rgba(220,53,69,0.2)',
       borderColor: 'rgba(220,53,69,1)',
@@ -34,13 +32,16 @@ export class EpenseGraphComponent implements OnInit {
       pointHoverBorderColor: 'rgba(0,0,0,0.8)'
     }
   ];
-  public lineChartLegend: boolean = true;
-  public lineChartType: string = 'line';
+  public lineChartLegend = true;
+  public lineChartType = 'line';
+
+  @Output()
+  emitEvent = new EventEmitter();
 
   constructor(private expenseService: ExpenseService) { }
 
   ngOnInit() {
-    //this.getExpensesData();
+    // this.getExpensesData();
     this.currentMonth = this.getHebMonth(new Date().getMonth());
     this.currentMonthIndex = this.monthes.indexOf(this.currentMonth);
     this.getExpensesDataByMonth(this.monthes.indexOf(this.currentMonth) +1)
@@ -50,7 +51,7 @@ export class EpenseGraphComponent implements OnInit {
     else if (this.monthes.indexOf(this.currentMonth) === 11) {
       this.nextAvilable = false;
     }
-    console.log(this.monthes.indexOf(this.currentMonth));
+
   }
 
   getHebMonth(month) {
@@ -81,12 +82,9 @@ export class EpenseGraphComponent implements OnInit {
 }
   getExpensesDataByMonth(month) {
    // let month2 = new Date().getMonth() + 1;
-    console.log(month);
     if (month) {
       const results = this.expenseService.getExpensesByMonth(month).subscribe((expensesByMonth) => {
     if (expensesByMonth.success) {
-        console.log('printing results');
-        console.log(expensesByMonth);
         this.populateGraphData(expensesByMonth.data);
     }
     else{
@@ -104,10 +102,10 @@ export class EpenseGraphComponent implements OnInit {
   prevMonth() {
 
     this.nextAvilable = true;
-    this.currentMonth = this.monthes[this.monthes.indexOf(this.currentMonth) -1];
-    console.log(this.monthes.indexOf(this.currentMonth));
+    this.currentMonth = this.monthes[this.monthes.indexOf(this.currentMonth) - 1];
     this.getExpensesDataByMonth(this.monthes.indexOf(this.currentMonth) + 1 );
-    //console.log(this.currentMonth );
+    this.expenseService.monthChanged(this.monthes.indexOf(this.currentMonth) + 1);
+    // console.log(this.currentMonth );
     if (this.monthes.indexOf(this.currentMonth) === 0 ) {
       this.prevAvilable = false;
     }
@@ -119,11 +117,11 @@ export class EpenseGraphComponent implements OnInit {
     this.prevAvilable = true;
     this.currentMonth = this.monthes[this.monthes.indexOf(this.currentMonth) +1];
     this.getExpensesDataByMonth(this.monthes.indexOf(this.currentMonth) + 1 );
-    console.log(this.monthes.indexOf(this.currentMonth));
     //console.log(this.currentMonth );
     if (this.monthes.indexOf(this.currentMonth) === 11 ) {
       this.nextAvilable = false;
     }
+    this.expenseService.monthChanged(this.monthes.indexOf(this.currentMonth) + 1);
   }
 
   // populating the data for the graph
@@ -137,4 +135,6 @@ export class EpenseGraphComponent implements OnInit {
     }
     this.lineChartData = _lineChartData;
   }
+
+
 }

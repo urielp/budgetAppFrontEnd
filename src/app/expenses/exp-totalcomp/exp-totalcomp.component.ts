@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ExpenseService} from '../expenses-service';
 import {Monthes} from '../shared/monthes';
 
@@ -18,28 +18,32 @@ export class ExpTotalcompComponent implements OnInit {
   currentMonth: number;
   ngOnInit() {
     this.currentMonth = (+(new Date().getMonth())) + 1;
-    this.getTotalExpensesAmount();
+    this.getTotalExpensesAmount(this.currentMonth);
+    this.expensesService.monthWasChanged$.subscribe((month) => {
+      this.getTotalExpensesAmount(month);
+    });
   }
 
-  getTotalExpensesAmount() {
+  getTotalExpensesAmount(month) {
 
-    this.expensesService.getTotalExpensesAmount(this.currentMonth).subscribe((results) => {
+
+    this.expensesService.getTotalExpensesAmount(month).subscribe((results) => {
       console.log(results);
       if (results.success) {
-        console.log('total');
+        console.log(results.data.length);
         console.log(results);
-     //   this.totalExpenses = results.data.length;
-        for (let i = 0 ; i < results.data.length ; i++) {
-          if ((results.data[i]._id.month - 1) === new Date().getMonth()) {
-            this.totalAmount = results.data[i].totalAmount;
-            this.totalExpenses = results.data[i].count;
-            this.month = Monthes[results.data[i]._id.month - 1];
-            this.year = results.data[i]._id.year;
-          }
-        }
+        this.totalAmount = results.data[0].totalAmount;
+        this.totalExpenses = results.data[0].count;
+        this.month = Monthes[results.data[0]._id.month - 1];
+        this.year = results.data[0]._id.year;
       } else {console.log('something went wrong'); }
     });
   }
 
+  @Input()
+  test(month) {
+  console.log('emmiting');
+  console.log(month);
+}
 
 }

@@ -8,13 +8,13 @@ import {ExtendedDetailsModalComponent} from './extended-details-modal/extended-d
   templateUrl: './expnses-item.component.html',
   styleUrls: ['./expnses-item.component.css']
 })
-export class ExpnsesItemComponent implements OnInit,AfterContentInit {
+export class ExpnsesItemComponent implements OnInit, AfterContentInit {
 
   @Input()expenseItem: Expense;
-  @Input() testItem : any;
+  @Input() testItem: any;
   @ViewChild(ExtendedDetailsModalComponent) extendedDetails: ExtendedDetailsModalComponent ;
-  date:Date;
-  myTest : Date;
+  date: Date;
+  myTest: Date;
   constructor() { }
 
   ngOnInit() {
