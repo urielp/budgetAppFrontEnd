@@ -16,8 +16,8 @@ export class ExpensesListComponent implements OnInit {
   pages: any;
   total: any;
   limit: any;
-  filtterdArray : Expense[];
-  showPaginition : boolean;
+  filtterdArray: Expense[];
+  showPaginition: boolean;
   constructor(private expenseService: ExpenseService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -43,7 +43,6 @@ export class ExpensesListComponent implements OnInit {
 
     //this.filtterdArray = this.expensesList.filter(this.filterByMonth);
     //this.expensesList = testArray;
-
     this.showPaginition = false;
     this.expenseService.getExpensesByMonth(new Date().getMonth() + 1).subscribe((results) => {
       if (results.success) {
@@ -85,7 +84,7 @@ export class ExpensesListComponent implements OnInit {
   }
 
   // get sepcific page from DB
-  getPage(page:number) {
+  getPage(page: number) {
     this.expenseService.getExpenseListByPage(page).subscribe((expenses) => {
       if (expenses.success) {
         this.expensesList = expenses.data;

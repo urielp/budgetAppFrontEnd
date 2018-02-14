@@ -11,18 +11,23 @@ import {Monthes} from '../shared/monthes';
 export class ExpTotalcompComponent implements OnInit {
 
   constructor(private expensesService: ExpenseService) { }
-  totalAmount:number;
-  totalExpenses:number;
-  month:string;
-  year:string;
+  totalAmount: number;
+  totalExpenses: number;
+  month: string;
+  year: string;
+  currentMonth: number;
   ngOnInit() {
+    this.currentMonth = (+(new Date().getMonth())) + 1;
+
     this.getTotalExpensesAmount();
+
 
   }
 
   getTotalExpensesAmount() {
 
-    this.expensesService.getTotalExpensesAmount().subscribe((results) => {
+    this.expensesService.getTotalExpensesAmount(this.currentMonth).subscribe((results) => {
+      console.log(results);
       if (results.success) {
         console.log('total');
         console.log(results);
