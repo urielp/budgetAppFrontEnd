@@ -18,10 +18,7 @@ export class ExpTotalcompComponent implements OnInit {
   currentMonth: number;
   ngOnInit() {
     this.currentMonth = (+(new Date().getMonth())) + 1;
-
     this.getTotalExpensesAmount();
-
-
   }
 
   getTotalExpensesAmount() {
@@ -40,10 +37,7 @@ export class ExpTotalcompComponent implements OnInit {
             this.year = results.data[i]._id.year;
           }
         }
-      }
-      else {
-        console.log('something went wrong');
-      }
+      } else {console.log('something went wrong'); }
     });
   }
 
