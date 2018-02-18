@@ -21,6 +21,8 @@ export class ExpTotalcompComponent implements OnInit {
     this.getTotalExpensesAmount(this.currentMonth);
     this.expensesService.monthWasChanged$.subscribe((month) => {
       this.getTotalExpensesAmount(month);
+      this.currentMonth = month;
+      console.log(this.currentMonth);
     });
   }
 
@@ -28,10 +30,8 @@ export class ExpTotalcompComponent implements OnInit {
 
 
     this.expensesService.getTotalExpensesAmount(month).subscribe((results) => {
-      console.log(results);
+
       if (results.success) {
-        console.log(results.data.length);
-        console.log(results);
         this.totalAmount = results.data[0].totalAmount;
         this.totalExpenses = results.data[0].count;
         this.month = Monthes[results.data[0]._id.month - 1];
@@ -45,5 +45,7 @@ export class ExpTotalcompComponent implements OnInit {
   console.log('emmiting');
   console.log(month);
 }
+
+
 
 }

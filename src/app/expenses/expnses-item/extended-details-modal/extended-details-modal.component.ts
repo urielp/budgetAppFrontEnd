@@ -12,6 +12,7 @@ export class ExtendedDetailsModalComponent implements OnInit {
   private modalRef: NgbModalRef;
   //@Input()
   expenseItem: Expense;
+  date : string;
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class ExtendedDetailsModalComponent implements OnInit {
   altOpen(expense: Expense) {
     this.expenseItem = expense;
     console.log(this.expenseItem);
+    this.date = new Date( this.expenseItem.date ).toDateString();
     this.open();
   }
 }

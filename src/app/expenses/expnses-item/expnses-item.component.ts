@@ -13,26 +13,22 @@ export class ExpnsesItemComponent implements OnInit, AfterContentInit {
   @Input()expenseItem: Expense;
   @Input() testItem: any;
   @ViewChild(ExtendedDetailsModalComponent) extendedDetails: ExtendedDetailsModalComponent ;
-  date: Date;
+  date: string;
   myTest: Date;
   constructor() { }
 
   ngOnInit() {
     if (this.expenseItem.date){
-      this.date = new Date(this.expenseItem.date);
-      //console.log(this.formatDate());
+      this.date = new Date(this.expenseItem.date).toDateString();
     }
     this.myTest = new Date('2018-02-28T22:00:00.000Z');
-
   }
 
   ngAfterContentInit() {
-   console.log('**');
-   console.log(this.testItem);
+
   }
 
   openExtendedDetailsModal(expense: Expense) {
-
     this.extendedDetails.altOpen(expense);
   }
 formatDate() {

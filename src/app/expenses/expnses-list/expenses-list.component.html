@@ -13,7 +13,7 @@
   </div>
   <hr>
   <div class="card-deck " >
-    <div class="w-25" *ngFor="let expense of filtterdArray">
+    <div class="w-25" *ngFor="let expense of expensesList ">
       <app-expnses-item [expenseItem]="expense" [testItem]="expense"></app-expnses-item>
     </div>
   </div>

@@ -66,7 +66,7 @@ export class EpenseGraphComponent implements OnInit {
     console.log(e);
   }
 
-  private getExpensesData() {
+ /* private getExpensesData() {
   this.expenseService.getExpensesList().subscribe((expenses) => {
     if (expenses.success) {
       this.lineChartLabels = Array<any> (expenses.data.length) ;
@@ -79,7 +79,7 @@ export class EpenseGraphComponent implements OnInit {
       alert(expenses.message);
     }
   });
-}
+}*/
   getExpensesDataByMonth(month) {
    // let month2 = new Date().getMonth() + 1;
     if (month) {
@@ -115,7 +115,7 @@ export class EpenseGraphComponent implements OnInit {
   // TODO:should considere make this avilable only if we already viewing the previous month.
   nextMonth() {
     this.prevAvilable = true;
-    this.currentMonth = this.monthes[this.monthes.indexOf(this.currentMonth) +1];
+    this.currentMonth = this.monthes[this.monthes.indexOf(this.currentMonth) + 1];
     this.getExpensesDataByMonth(this.monthes.indexOf(this.currentMonth) + 1 );
     //console.log(this.currentMonth );
     if (this.monthes.indexOf(this.currentMonth) === 11 ) {

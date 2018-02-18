@@ -16,8 +16,9 @@ export class ExpenseService {
   monthWasChanged$ = this.monthChangedSource.asObservable();
 
   constructor(private httpClient: HttpClient) {}
-  getExpensesList(): Observable<any> {
-    return this.httpClient.get(this.expense_url)
+  getExpensesList(month): Observable<any> {
+    console.log(this.expense_url+'/expensesList/'+month);
+    return this.httpClient.get(this.expense_url+'/expensesList/'+month)
       .map((res) => {
         if (res['data'].docs) {
 
@@ -34,6 +35,7 @@ export class ExpenseService {
           // }
 
           const returnedData = res['data'].docs as Expense[];
+
           return {
             success: true,
             data: returnedData,
@@ -47,11 +49,10 @@ export class ExpenseService {
         }
       });
   }
-  getExpenseListByPage(p): Observable<any> {
-    return this.httpClient.get(`${this.expense_url}`, { params: { page: p}})
+  getExpenseListByPage(month, p): Observable<any> {
+    return this.httpClient.get(`${this.expense_url}/expensesList/${month}`, { params: { page: p}})
       .map((res) => {
         if (res['data'].docs) {
-
           const returnedData = res['data'].docs as Expense[];
           return {
             success: true,
@@ -103,7 +104,8 @@ export class ExpenseService {
 }
 
   monthChanged(month: number) {
-  this.monthChangedSource.next(month);
+  console.log('mont was changed to ' + month);
+    this.monthChangedSource.next(month);
 }
 
 }

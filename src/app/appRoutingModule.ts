@@ -16,6 +16,8 @@ const applicationRouting: Routes = [
         {path: 'expDashBoard', component: ExpensesDashBoardComponent},
         {path: 'expensesList', component: ExpensesListComponent,
                                 children: [{path: 'add', component: AddExpenseComponent}]},
+        {path: 'expensesList/:month', component: ExpensesListComponent,
+                                children: [{path: 'add', component: AddExpenseComponent}]},
         {path: 'expGraph', component: EpenseGraphComponent}
       ]
     }
