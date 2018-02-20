@@ -1,15 +1,16 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import Expense from '../../models/expenses.model';
 import {ExpenseService} from '../expenses-service';
 import {AddExpenseComponent} from './add-expense/add-expense.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Monthes} from '../shared/monthes';
+import {ISubscription} from 'rxjs/Subscription';
 @Component({
   selector: 'app-expenses-list',
   templateUrl: './expenses-list.component.html',
   styleUrls: ['./expenses-list.component.css']
 })
-export class ExpensesListComponent implements OnInit {
+export class ExpensesListComponent implements OnInit,OnDestroy {
 
   @ViewChild(AddExpenseComponent) addExpModal: AddExpenseComponent ;
   expensesList: Expense[];
@@ -21,6 +22,10 @@ export class ExpensesListComponent implements OnInit {
   showPaginition: boolean;
   currentHebMonth: string;
   private sub: any;
+  private routeSubscription: ISubscription;
+  private expensesListSubscription: ISubscription;
+  private  expensesByMonthSubscription: ISubscription;
+  private  addExpenseSubscription: ISubscription;
   @Input()
   requestedMonth: number;
   constructor(private expenseService: ExpenseService, private router: Router, private activeRoute: ActivatedRoute) { }
@@ -28,7 +33,7 @@ export class ExpensesListComponent implements OnInit {
   ngOnInit() {
     this.pages = 4;
     this.filterExpensesByMonth(new Date().getMonth() + 1);
-    this.sub = this.activeRoute.params.subscribe( params => {
+    this.routeSubscription = this.sub = this.activeRoute.params.subscribe( params => {
       this.requestedMonth = +params['month'];
       this.filterExpensesByMonth(this.requestedMonth);
       this.currentHebMonth = Monthes[+this.requestedMonth - 1];
@@ -40,15 +45,13 @@ export class ExpensesListComponent implements OnInit {
 
   getFullExpensesLit(month) {
 
-    this.expenseService.getExpensesList(month).subscribe((expenses) => {
+    this.expensesListSubscription = this.expenseService.getExpensesList(month).subscribe((expenses) => {
       if (expenses.success) {
         this.expensesList = expenses.data  as Expense[];
         this.total = +expenses.total;
         this.pages = +expenses.pages;
         this.limit = +expenses.limit;
-        console.log(this.pages);
-       console.log(this.expensesList);
-      } else {
+         } else {
         alert(expenses.message);
       }
     });
@@ -58,7 +61,7 @@ export class ExpensesListComponent implements OnInit {
     //this.filtterdArray = this.expensesList.filter(this.filterByMonth);
     //this.expensesList = testArray;
     this.showPaginition = true;
-    this.expenseService.getExpensesByMonth(month).subscribe((results) => {
+    this.expensesByMonthSubscription = this.expenseService.getExpensesByMonth(month).subscribe((results) => {
       if (results.success) {
         this.filtterdArray = results.data;
         this.total = results.data.length;
@@ -87,10 +90,11 @@ export class ExpensesListComponent implements OnInit {
 // adding expense to DB
   onDataSubmit(expense: any) {
 
-    this.expenseService.addExpense(expense).subscribe((res) => {
+    this.addExpenseSubscription = this.expenseService.addExpense(expense).subscribe((res) => {
       if (res.success === true)
       {
         this.expensesList.push(res.data);
+        this.addExpenseSubscription.unsubscribe();
       }
       else
         alert('not created');
@@ -101,7 +105,6 @@ export class ExpensesListComponent implements OnInit {
   getPage(page: number) {
     this.expenseService.getExpenseListByPage(this.requestedMonth, page).subscribe((expenses) => {
       if (expenses.success) {
-        console.log(expenses);
         this.expensesList = expenses.data;
       } else {
         alert(expenses.message);
@@ -115,6 +118,13 @@ export class ExpensesListComponent implements OnInit {
 
   previousePage(previousPage) {
 
+  }
+
+  ngOnDestroy() {
+this.expensesListSubscription.unsubscribe();
+this.routeSubscription.unsubscribe();
+//this.addExpenseSubscription.unsubscribe();
+this.expensesByMonthSubscription.unsubscribe();
   }
 }
 

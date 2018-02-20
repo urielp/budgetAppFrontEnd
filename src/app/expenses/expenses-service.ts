@@ -83,10 +83,11 @@ export class ExpenseService {
         }}
       });
   }
-  getTotalExpensesAmount(month): Observable <any> {
-    return this.httpClient.get(`${this.expense_url}/total/${month}`)
+  getTotalExpensesAmount(month, year): Observable <any> {
+    return this.httpClient.get(`${this.expense_url}/total/${month}`, { params: { year: year }})
       .map((res) => {
-        if (res['data']) {
+        console.log(res);
+        if (res['data'] && res['success']) {
           return {
             success: true,
             data: res['data'],

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ExpenseService} from '../expenses-service';
 import {Monthes} from '../shared/monthes';
+import {ISubscription} from 'rxjs/Subscription';
 
 
 @Component({
@@ -16,34 +17,41 @@ export class ExpTotalcompComponent implements OnInit {
   month: string;
   year: string;
   currentMonth: number;
+  private getTotalExpSubscription: ISubscription;
+  private monthChangeSubscription: ISubscription;
   ngOnInit() {
     this.currentMonth = (+(new Date().getMonth())) + 1;
     this.getTotalExpensesAmount(this.currentMonth);
-    this.expensesService.monthWasChanged$.subscribe((month) => {
+    this.monthChangeSubscription = this.expensesService.monthWasChanged$.subscribe((month) => {
       this.getTotalExpensesAmount(month);
       this.currentMonth = month;
-      console.log(this.currentMonth);
     });
   }
 
   getTotalExpensesAmount(month) {
 
 
-    this.expensesService.getTotalExpensesAmount(month).subscribe((results) => {
-
-      if (results.success) {
+    this.getTotalExpSubscription = this.expensesService.getTotalExpensesAmount(month,new Date().getFullYear()).subscribe((results) => {
+console.log(results);
+      if (results.success ) {
+        console.log(results.data[0].count);
         this.totalAmount = results.data[0].totalAmount;
         this.totalExpenses = results.data[0].count;
         this.month = Monthes[results.data[0]._id.month - 1];
         this.year = results.data[0]._id.year;
-      } else {console.log('something went wrong'); }
+      } else {console.log('something went wrong');
+        this.totalAmount = 0 ;
+        this.totalExpenses = 0;
+        this.month  = Monthes[month - 1];
+
+      }
     });
   }
 
   @Input()
   test(month) {
-  console.log('emmiting');
-  console.log(month);
+
+
 }
 
 
