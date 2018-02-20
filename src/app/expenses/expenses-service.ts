@@ -17,7 +17,7 @@ export class ExpenseService {
 
   constructor(private httpClient: HttpClient) {}
   getExpensesList(month): Observable<any> {
-    console.log(this.expense_url+'/expensesList/'+month);
+
     return this.httpClient.get(this.expense_url+'/expensesList/'+month)
       .map((res) => {
         if (res['data'].docs) {
@@ -86,7 +86,7 @@ export class ExpenseService {
   getTotalExpensesAmount(month, year): Observable <any> {
     return this.httpClient.get(`${this.expense_url}/total/${month}`, { params: { year: year }})
       .map((res) => {
-        console.log(res);
+
         if (res['data'] && res['success']) {
           return {
             success: true,
@@ -105,7 +105,7 @@ export class ExpenseService {
 }
 
   monthChanged(month: number) {
-  console.log('mont was changed to ' + month);
+
     this.monthChangedSource.next(month);
 }
 

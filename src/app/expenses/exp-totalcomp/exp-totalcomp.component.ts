@@ -32,9 +32,7 @@ export class ExpTotalcompComponent implements OnInit {
 
 
     this.getTotalExpSubscription = this.expensesService.getTotalExpensesAmount(month,new Date().getFullYear()).subscribe((results) => {
-console.log(results);
       if (results.success ) {
-        console.log(results.data[0].count);
         this.totalAmount = results.data[0].totalAmount;
         this.totalExpenses = results.data[0].count;
         this.month = Monthes[results.data[0]._id.month - 1];

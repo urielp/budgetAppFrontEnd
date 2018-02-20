@@ -24,9 +24,9 @@ export class AddExpenseComponent {
   constructor(private modalService: NgbModal) { }
 
 
-onSubmit(expForm:NgForm) {
+onSubmit(expForm: NgForm) {
 
-    console.log(expForm);
+
 
      this.expense.name = expForm.value.expenseData.expName;
      this.expense.amount = expForm.value.expenseData.expAmount;

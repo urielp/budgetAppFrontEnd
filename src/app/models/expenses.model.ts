@@ -33,7 +33,6 @@ class Expense {
     if (mm < 10) {
       mm = +`0${mm}`;
     }
-    console.log(dd + '/' + mm + '/' + yyyy);
     return dd + '/' + mm + '/' + yyyy;
   }
 }

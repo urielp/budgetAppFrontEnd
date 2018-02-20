@@ -18,7 +18,6 @@ export class BankService {
       .map((res) => {
         if (res['data'].docs) {
           const returnedData = res['data'].docs as Bank[];
-          console.log(returnedData);
           return {
             success: true,
             data: returnedData,

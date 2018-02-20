@@ -23,7 +23,6 @@ export class ExtendedDetailsModalComponent implements OnInit {
   }
   altOpen(expense: Expense) {
     this.expenseItem = expense;
-    console.log(this.expenseItem);
     this.date = new Date( this.expenseItem.date ).toDateString();
     this.open();
   }
