@@ -67,6 +67,9 @@ export class ExpenseService {
   addExpense(expense: Expense): Observable<any> {
     return this.httpClient.post(`${this.expense_url}`, expense);
   }
+  updateExpense(id:string, expense: Expense): Observable <any> {
+    return this.httpClient.put(`${this.expense_url}/update/${id}`, expense);
+  }
   getExpensesByMonth(month): Observable<any> {
     return this.httpClient.get(`${this.expense_url}/month/${month}` )
       .map((res) => {
@@ -103,7 +106,6 @@ export class ExpenseService {
         }
       });
 }
-
   monthChanged(month: number) {
 
     this.monthChangedSource.next(month);

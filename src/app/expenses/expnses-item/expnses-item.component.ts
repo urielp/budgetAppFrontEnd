@@ -3,6 +3,8 @@ import Expense from '../../models/expenses.model';
 import {AddExpenseComponent} from '../expnses-list/add-expense/add-expense.component';
 import {ExtendedDetailsModalComponent} from './extended-details-modal/extended-details-modal.component';
 import {UpdateComponent} from './update/update.component';
+import {ISubscription} from 'rxjs/Subscription';
+import {ExpenseService} from '../expenses-service';
 
 @Component({
   selector: 'app-expnses-item',
@@ -14,10 +16,11 @@ export class ExpnsesItemComponent implements OnInit, AfterContentInit {
   @Input()expenseItem: Expense;
   @Input() testItem: any;
   @ViewChild(ExtendedDetailsModalComponent) extendedDetails: ExtendedDetailsModalComponent ;
-  @ViewChild(UpdateComponent) updateExpModal: UpdateComponent ;
+  @ViewChild(UpdateComponent) updateExpModal: UpdateComponent;
+  private  updateExpenseSubscription: ISubscription;
   date: string;
   myTest: Date;
-  constructor() { }
+  constructor(private expenseService: ExpenseService) { }
 
   ngOnInit() {
     if (this.expenseItem.date) {
@@ -50,5 +53,12 @@ formatDate() {
   update(expense: Expense) {
     console.log('trying to update');
     this.updateExpModal.altOpen(expense);
+  }
+
+  onUpdateSubmit(id:string) {
+    this.updateExpenseSubscription = this.expenseService.updateExpense(id,this.expenseItem).subscribe((res) => {
+      if (res.success === true) {
+       alert("Updated");
+      } else {alert('not created');} });
   }
 }

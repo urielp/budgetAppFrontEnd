@@ -1,23 +1,27 @@
 class Expense {
+
+
   private name: string;
-  private title: string;
+  private _title: string;
   private amount: number;
   private description: string;
   public date: Date;
   private status: string;
   public formatetdDate: string;
-  private _id : string;
+  private _id: string;
   private __v:number;
   constructor(name: string, title: string, amount: number, description: string, date: Date, status: string) {
     this.name = name;
-    this.title = title;
+    this._title = title;
     this.amount = amount;
     this.description = description;
     this.date = new Date(0);
     this.status = status;
     this.formatetdDate = this.dateFormat();
   }
-
+  get id(): string {
+    return this._id;
+  }
   public getDate(): Date {
     return this.date;
   }

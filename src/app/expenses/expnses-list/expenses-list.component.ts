@@ -27,6 +27,7 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
   private expensesListSubscription: ISubscription;
   private  expensesByMonthSubscription: ISubscription;
   private  addExpenseSubscription: ISubscription;
+  private  updateExpenseSubscription: ISubscription;
   @Input()
   requestedMonth: number;
   constructor(private expenseService: ExpenseService, private router: Router, private activeRoute: ActivatedRoute) { }
@@ -83,8 +84,6 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
   Uopen() {
     this.addExpModal.open();
   }
-
-
   // TODO:add the routing part here
   newEx() {
     this.router.navigate(['add'], {relativeTo: this.activeRoute});
@@ -92,7 +91,6 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
 
 // adding expense to DB
   onDataSubmit(expense: any) {
-
     this.addExpenseSubscription = this.expenseService.addExpense(expense).subscribe((res) => {
       if (res.success === true)
       {
@@ -103,7 +101,17 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
         alert('not created');
     });
   }
-
+  onUpdateSubmit(expense: any) {
+    this.updateExpenseSubscription = this.expenseService.updateExpense(expense).subscribe((res) => {
+      if (res.success === true)
+      {
+        this.expensesList.push(res.data);
+        this.addExpenseSubscription.unsubscribe();
+      }
+      else
+        alert('not created');
+    });
+  }
   // get sepcific page from DB
   getPage(page: number) {
     this.expenseService.getExpenseListByPage(this.requestedMonth, page).subscribe((expenses) => {
@@ -114,15 +122,6 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
       }
     });
   }
-
-  getNextPage(nextpage) {
-
-  }
-
-  previousePage(previousPage) {
-
-  }
-
   ngOnDestroy() {
 this.expensesListSubscription.unsubscribe();
 this.routeSubscription.unsubscribe();

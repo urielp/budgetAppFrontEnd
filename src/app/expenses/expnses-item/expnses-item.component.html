@@ -106,7 +106,7 @@
           <span><i class="fa fa-arrow-circle-left"></i></span>
         </a>
         <app-extended-details-modal ></app-extended-details-modal>
-        <app-update [expenseItem]="expenseItem"></app-update>
+        <app-update (onFormUpdated)="onUpdateSubmit($event)" [expenseItem]="expenseItem"></app-update>
       </div>
     </div>
     <!--<div class="row">-->
