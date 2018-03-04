@@ -22,6 +22,7 @@ import { EpenseGraphComponent } from './expenses/epense-graph/epense-graph.compo
 import { ChartsModule } from 'ng2-charts';
 import { ExpTotalcompComponent } from './expenses/exp-totalcomp/exp-totalcomp.component';
 import { BankInfoComponent } from './banks/bank-info/bank-info.component';
+import { UpdateComponent } from './expenses/expnses-item/update/update.component';
 
 const applicationRouting: Routes = [
   {path: '', component: HomeCompComponent},
@@ -45,7 +46,8 @@ const applicationRouting: Routes = [
     ExtendedDetailsModalComponent,
     EpenseGraphComponent,
     ExpTotalcompComponent,
-    BankInfoComponent
+    BankInfoComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,

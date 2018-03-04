@@ -80,3 +80,12 @@ body {
   -moz-transition-duration: 0.5s;
   -o-transition-duration: 0.5s;
 }
+
+.logo{
+  width:8rem;
+  height: 8rem;
+}
+
+.myColorTest{
+  color:#7FDBFF;
+}

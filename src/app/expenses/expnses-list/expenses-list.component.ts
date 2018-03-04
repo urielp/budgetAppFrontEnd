@@ -5,12 +5,13 @@ import {AddExpenseComponent} from './add-expense/add-expense.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Monthes} from '../shared/monthes';
 import {ISubscription} from 'rxjs/Subscription';
+import {UpdateComponent} from '../expnses-item/update/update.component';
 @Component({
   selector: 'app-expenses-list',
   templateUrl: './expenses-list.component.html',
   styleUrls: ['./expenses-list.component.css']
 })
-export class ExpensesListComponent implements OnInit,OnDestroy {
+export class ExpensesListComponent implements OnInit, OnDestroy {
 
   @ViewChild(AddExpenseComponent) addExpModal: AddExpenseComponent ;
   expensesList: Expense[];
@@ -82,6 +83,7 @@ export class ExpensesListComponent implements OnInit,OnDestroy {
   Uopen() {
     this.addExpModal.open();
   }
+
 
   // TODO:add the routing part here
   newEx() {

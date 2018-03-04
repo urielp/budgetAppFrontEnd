@@ -10,9 +10,8 @@ import Expense from '../../../models/expenses.model';
 export class ExtendedDetailsModalComponent implements OnInit {
   @ViewChild('content')  extendedDetailsModal: ElementRef;
   private modalRef: NgbModalRef;
-  //@Input()
   expenseItem: Expense;
-  date : string;
+  date: string;
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {

@@ -82,6 +82,7 @@
       </div>
       <div>
         <a><span><i class="fa fa-credit-card fa-right"></i></span></a>
+        <a (click)="update(expenseItem)"><span><i class="fa fa-edit fa-right"></i></span></a>
       </div>
     </div>
   </div>
@@ -105,6 +106,7 @@
           <span><i class="fa fa-arrow-circle-left"></i></span>
         </a>
         <app-extended-details-modal ></app-extended-details-modal>
+        <app-update [expenseItem]="expenseItem"></app-update>
       </div>
     </div>
     <!--<div class="row">-->

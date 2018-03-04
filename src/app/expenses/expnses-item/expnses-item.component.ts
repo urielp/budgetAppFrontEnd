@@ -2,6 +2,7 @@ import {Component, OnInit, Input, ViewChild, AfterContentInit} from '@angular/co
 import Expense from '../../models/expenses.model';
 import {AddExpenseComponent} from '../expnses-list/add-expense/add-expense.component';
 import {ExtendedDetailsModalComponent} from './extended-details-modal/extended-details-modal.component';
+import {UpdateComponent} from './update/update.component';
 
 @Component({
   selector: 'app-expnses-item',
@@ -13,12 +14,13 @@ export class ExpnsesItemComponent implements OnInit, AfterContentInit {
   @Input()expenseItem: Expense;
   @Input() testItem: any;
   @ViewChild(ExtendedDetailsModalComponent) extendedDetails: ExtendedDetailsModalComponent ;
+  @ViewChild(UpdateComponent) updateExpModal: UpdateComponent ;
   date: string;
   myTest: Date;
   constructor() { }
 
   ngOnInit() {
-    if (this.expenseItem.date){
+    if (this.expenseItem.date) {
       this.date = new Date(this.expenseItem.date).toDateString();
     }
     this.myTest = new Date('2018-02-28T22:00:00.000Z');
@@ -44,4 +46,9 @@ formatDate() {
    //console.log(dd + '/' + mm + '/' + yyyy);
    return dd + '/' + mm + '/' + yyyy;
 }
+
+  update(expense: Expense) {
+    console.log('trying to update');
+    this.updateExpModal.altOpen(expense);
+  }
 }

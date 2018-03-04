@@ -34,7 +34,7 @@ onSubmit(expForm: NgForm) {
      this.expense.date = expForm.value.expenseData.expDate;
      this.expense.status = expForm.value.expenseData.expStatus;
      this.onFormSubmitted.emit(this.expense) ;
-    this.modalRef.close();
+     this.modalRef.close();
 }
 
   open() {
