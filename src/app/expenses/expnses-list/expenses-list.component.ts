@@ -31,9 +31,9 @@ export class ExpensesListComponent implements OnInit,OnDestroy {
   constructor(private expenseService: ExpenseService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.pages = 4;
-    this.filterExpensesByMonth(new Date().getMonth() + 1);
-    this.routeSubscription = this.sub = this.activeRoute.params.subscribe( params => {
+
+      this.filterExpensesByMonth(new Date().getMonth() + 1);
+      this.routeSubscription = this.sub = this.activeRoute.params.subscribe( params => {
       this.requestedMonth = +params['month'];
       this.filterExpensesByMonth(this.requestedMonth);
       this.currentHebMonth = Monthes[+this.requestedMonth - 1];
@@ -49,6 +49,7 @@ export class ExpensesListComponent implements OnInit,OnDestroy {
       if (expenses.success) {
         this.expensesList = expenses.data  as Expense[];
         this.total = +expenses.total;
+        console.log(+expenses.total);
         this.pages = +expenses.pages;
         this.limit = +expenses.limit;
          } else {
