@@ -14,7 +14,7 @@
   <hr>
   <div class="card-deck " >
     <div class="w-25" *ngFor="let expense of expensesList ">
-      <app-expnses-item [expenseItem]="expense" [testItem]="expense"></app-expnses-item>
+      <app-expnses-item [expenseItem]="expense" [testItem]="expense" (onDelete)="onDelete($event)"></app-expnses-item>
     </div>
   </div>
   <div class="row add">

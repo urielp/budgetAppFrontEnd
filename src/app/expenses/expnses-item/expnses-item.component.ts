@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ViewChild, AfterContentInit} from '@angular/core';
+import {Component, OnInit, Input, ViewChild, AfterContentInit, Output, EventEmitter} from '@angular/core';
 import Expense from '../../models/expenses.model';
 import {AddExpenseComponent} from '../expnses-list/add-expense/add-expense.component';
 import {ExtendedDetailsModalComponent} from './extended-details-modal/extended-details-modal.component';
@@ -18,6 +18,8 @@ export class ExpnsesItemComponent implements OnInit, AfterContentInit {
   @ViewChild(ExtendedDetailsModalComponent) extendedDetails: ExtendedDetailsModalComponent ;
   @ViewChild(UpdateComponent) updateExpModal: UpdateComponent;
   private  updateExpenseSubscription: ISubscription;
+  private deleteExpenseSubscreption: ISubscription;
+  @Output() onDelete: EventEmitter<any> = new EventEmitter<any>();
   date: string;
   myTest: Date;
   constructor(private expenseService: ExpenseService) { }
@@ -36,7 +38,7 @@ export class ExpnsesItemComponent implements OnInit, AfterContentInit {
   openExtendedDetailsModal(expense: Expense) {
     this.extendedDetails.altOpen(expense);
   }
-formatDate() {
+  formatDate() {
   let dd = this.testItem.day;//this.date.getDay();
   let mm =this.testItem.month;//this.date.getMonth() ;
   const yyyy = this.testItem.year;//this.date.getFullYear();
@@ -55,10 +57,19 @@ formatDate() {
     this.updateExpModal.altOpen(expense);
   }
 
-  onUpdateSubmit(id:string) {
+  onUpdateSubmit(id: string) {
     this.updateExpenseSubscription = this.expenseService.updateExpense(id,this.expenseItem).subscribe((res) => {
       if (res.success === true) {
-       alert("Updated");
-      } else {alert('not created');} });
+      } else {alert('not updated'); } });
+  }
+  onDeleteRequest(id: string) {
+    var txt = ''
+    if (confirm("Press a button!")) {
+     console.log('Deleted');
+     this.onDelete.emit(this.expenseItem);
+    } else {
+      console.log('No Deleted');
+    }
+    //this.onDelete.emit(id);
   }
 }

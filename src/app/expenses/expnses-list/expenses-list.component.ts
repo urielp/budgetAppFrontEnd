@@ -102,9 +102,8 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
     });
   }
   onUpdateSubmit(expense: any) {
-    this.updateExpenseSubscription = this.expenseService.updateExpense(expense).subscribe((res) => {
-      if (res.success === true)
-      {
+    this.updateExpenseSubscription = this.expenseService.updateExpense(expense._id, expense).subscribe((res) => {
+      if (res.success === true) {
         this.expensesList.push(res.data);
         this.addExpenseSubscription.unsubscribe();
       }
@@ -112,7 +111,7 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
         alert('not created');
     });
   }
-  // get sepcific page from DB
+  //get sepcific page from DB
   getPage(page: number) {
     this.expenseService.getExpenseListByPage(this.requestedMonth, page).subscribe((expenses) => {
       if (expenses.success) {
@@ -122,11 +121,20 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
       }
     });
   }
+  onDelete(expense) {
+
+    console.log(expense);
+   this.expenseService.deleteExpense(expense._id).subscribe((res) =>{
+     if (res.success === true) {
+       this.expensesList.splice(this.expensesList.indexOf(expense), 1);} else {alert('Unable to Delete Expense'); }
+   });
+  }
   ngOnDestroy() {
 this.expensesListSubscription.unsubscribe();
 this.routeSubscription.unsubscribe();
 //this.addExpenseSubscription.unsubscribe();
 this.expensesByMonthSubscription.unsubscribe();
   }
+
 }
 

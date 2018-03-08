@@ -70,6 +70,9 @@ export class ExpenseService {
   updateExpense(id:string, expense: Expense): Observable <any> {
     return this.httpClient.put(`${this.expense_url}/update/${id}`, expense);
   }
+  deleteExpense(id: string): Observable<any> {
+    return this.httpClient.delete(`${this.expense_url}/remove/${id}`);
+  }
   getExpensesByMonth(month): Observable<any> {
     return this.httpClient.get(`${this.expense_url}/month/${month}` )
       .map((res) => {
